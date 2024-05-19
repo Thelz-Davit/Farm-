@@ -46,4 +46,10 @@ class SapiController extends Controller
         $sapi->delete();
         return redirect('sapi/table');
     }
+
+    public function jumlah()
+    {
+        $jumlahSapi = Sapi::count();
+        return view('index', compact('jumlahSapi'));
+    }
 }

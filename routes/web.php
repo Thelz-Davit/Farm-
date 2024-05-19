@@ -47,3 +47,4 @@ Route::put('/sapi/edit/{id}', [SapiController::class, 'update']);
 Route::delete('/sapi/delete/{id}', [SapiController::class, 'destroy']);
 
 Route::get('finansial/table', [PenjualanController::class, 'index']);
+Route::get('index', [SapiController::class, 'jumlah']);
