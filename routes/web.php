@@ -1,31 +1,49 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PenjualanController;
+use App\Http\Controllers\SapiController;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RegisterController;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('login', function () {
+    return view('login');
+})->name('login');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::get('register', function () {
+    return view('register');
 });
 
-require __DIR__.'/auth.php';
+
+Route::post('/post-register', [RegisterController::class, 'store']);
+Route::post('/post-login', [AuthController::class, 'postLogin']);
+Route::get('/logout', [AuthController::class, 'logout']);
+
+Route::middleware(['auth'])->group(function(){
+    Route::get('index', function() {
+        return view('index');
+    });
+});
+
+// Route::get('/sapi/table', function () {
+//     return view('sapi.table');
+// });
+
+// Route::get('/sapi/create', function () {
+//     return view('sapi.form');
+// });
+
+Route::get('sapi/table', [SapiController::class, 'index']);
+Route::get('sapi/create', [SapiController::class, 'create']);
+Route::post('sapi/create', [SapiController::class, 'store']);
+
+Route::get('/sapi/edit/{id}', [SapiController::class, 'edit']);
+Route::put('/sapi/edit/{id}', [SapiController::class, 'update']);
+Route::delete('/sapi/delete/{id}', [SapiController::class, 'destroy']);
+
+Route::get('finansial/table', [PenjualanController::class, 'index']);
