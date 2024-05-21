@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\SapiController;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('index', function() {
         return view('index');
     });
+    
 });
 
 // Route::get('/sapi/table', function () {
@@ -47,3 +49,11 @@ Route::put('/sapi/edit/{id}', [SapiController::class, 'update']);
 Route::delete('/sapi/delete/{id}', [SapiController::class, 'destroy']);
 
 Route::get('finansial/table', [PenjualanController::class, 'index']);
+
+Route::get('pemesanan/create', [PemesananController::class, 'create']);
+Route::post('pemesanan/create', [PemesananController::class, 'store']);
+Route::get('pemesanan/table', [PemesananController::class, 'index']);
+Route::get('pemesanan/table/{id}', [PemesananController::class, 'show'])->name('pemesanan.show');
+Route::put('/pemesanan/edit/{id}', [PemesananController::class, 'update']);
+Route::delete('/pemesanan/delete/{id}', [PemesananController::class, 'destroy']);
+

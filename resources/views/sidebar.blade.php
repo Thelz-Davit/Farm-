@@ -45,10 +45,18 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('index') }}" class="nav-link">
+                    <a href="{{ url('pemesanan/create') }}" class="nav-link">
                         <i class="nav-icon fas fa-shopping-cart"></i>
                         <p>
                             Pemesanan
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url('pemesanan/table') }}" class="nav-link">
+                        <i class="nav-icon fas fa-shopping-cart"></i>
+                        <p>
+                            Pemesanan Table
                         </p>
                     </a>
                 </li>
