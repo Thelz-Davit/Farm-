@@ -7,13 +7,15 @@ use App\Models\Pemesanan;
 use App\Models\Sapi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PemesananController extends Controller
 {
     public function index()
     {
-        $data['pesan'] = Pemesanan::all();
-        return view('pemesanan.table', $data);
+        $pesan = Pemesanan::all();
+        $sapi = Sapi::all();
+        return view('pemesanan.table', compact('sapi','pesan'));
     }
 
     public function create()
@@ -22,15 +24,45 @@ class PemesananController extends Controller
         $user = Auth::user();
         $sapi = Sapi::all();
         // belum bikin kolom availabilitynya
-        // $sapi = Sapi::where('availability', 1)->get();
+        $sapi = Sapi::where('availability', 1)->get();
         return view('pemesanan.form', compact('sapi', 'user'));
     }
 
     public function store(Request $request)
     {
+        // $input = $request->all();
+        // Pemesanan::create($input);
+        // return redirect('pemesanan/table');
+
         $input = $request->all();
-        Pemesanan::create($input);
-        return redirect('pemesanan/table');
+        $input['pembayaran'] = $request->input('formatted_pembayaran'); // Ensure 'pembayaran' field is set correctly
+        $input['admin'] = auth()->user()->name;  // Assuming the user is authenticated
+
+        // Start a database transaction
+        DB::beginTransaction();
+
+        try {
+            // Create a new pemesanan record
+            Pemesanan::create($input);
+
+            // Update the sapi availability
+            $sapi = Sapi::find($request->input('id_sapi'));
+            $sapi->availability = 0;  // Update the availability
+            $sapi->save();
+
+            // Commit the transaction
+            DB::commit();
+
+            // Redirect after successful creation and update
+            return redirect('pemesanan/table')->with('success', 'Order created and sapi updated successfully!');
+
+        } catch (\Exception $e) {
+            // Rollback the transaction on error
+            DB::rollBack();
+
+            // Handle the error (log it, display error message, etc.)
+            return back()->withErrors('Error creating order: ' . $e->getMessage());
+        }
     }
 
     public function show($id)
@@ -52,5 +84,11 @@ class PemesananController extends Controller
         $pesan = Pemesanan::findOrFail($id);
         $pesan->delete();
         return redirect('pemesanan/table');
+    }
+
+    public function showModal(Request $request)
+    {
+        $sapi = Sapi::findOrFail($request->id_sapi);
+        return view('pemesanan.table', compact('pesansapi'));
     }
 }

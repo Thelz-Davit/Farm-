@@ -11,7 +11,7 @@ class SapiController extends Controller
     public function index()
     {
         $data['sapi'] = Sapi::all();
-        return view('sapi.table',$data);
+        return view('sapi.table', $data);
     }
 
     public function create()
@@ -21,8 +21,23 @@ class SapiController extends Controller
 
     public function store(Request $request)
     {
+        // $input = $request->all();
+        // Sapi::create($input);
         $input = $request->all();
+
+        // Handle the image upload
+        if ($request->file('foto')) {
+            $image = $request->file('foto');
+            $imageName = time() . '.' . $image->extension();
+            $image->move(public_path('img'), $imageName);
+
+            // Save the image path in the input array
+            $input['foto'] = 'img/' . $imageName;
+        }
+
+        // Create a new Sapi record with the input data
         Sapi::create($input);
+
         return redirect('sapi/table');
     }
 

@@ -9,12 +9,6 @@
                     <div class="col-sm-6">
                         <h1 class="m-0">Data Sapi</h1>
                     </div><!-- /.col -->
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ url('index') }}">Home</a></li>
-                            <li class="breadcrumb-item active">Data Sapi</li>
-                        </ol>
-                    </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
         </div>
@@ -47,9 +41,9 @@
                                     <td>{{ $item->id}}</td>
                                     <td>{{ $item->tipe}}</td>
                                     <td>{{ $item->status_kesehatan}}</td>
-                                    <td>{{ $item->harga_jual}}</td>
+                                    <td>Rp. {{ $item->harga_jual}}</td>
                                     <td>{{ $item->harga_beli}}</td>
-                                    <td>{{ $item->foto}}</td>
+                                    <td><img class="img-fluid img-thumbnail" src="{{ asset($item->foto) }}" alt="" style="max-width: 100px;"></td>
                                     <td>
                                         <div class="row">
                                             <a href="{{ url('sapi/edit/' . $item->id) }}" class="btn btn-warning mr-1"><i class="right fas fa-pen"></i></a>
@@ -74,4 +68,17 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
+@endsection
+
+@section('scripts')
+<script>
+  $(function() {
+      $("#table_sapi").DataTable({
+          "responsive": true,
+          "lengthChange": false,
+          "autoWidth": false,
+          "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+      }).buttons().container().appendTo('#table_sapi_wrapper .col-md-6:eq(0)');
+  });
+</script>
 @endsection

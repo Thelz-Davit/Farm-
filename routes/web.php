@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\SapiController;
@@ -29,7 +30,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('index', function() {
         return view('index');
     });
-    
+    Route::get('index', [DashboardController::class, 'count']);
 });
 
 // Route::get('/sapi/table', function () {

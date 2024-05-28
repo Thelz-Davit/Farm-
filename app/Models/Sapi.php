@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Sapi extends Model
 {
     protected $table = "Sapi";
-    protected $fillable = ['tipe','status_kesehatan','harga_jual','harga_beli','foto'];
+    protected $fillable = ['tipe','status_kesehatan','harga_jual','harga_beli','foto','availability'];
     use HasFactory;
 }
