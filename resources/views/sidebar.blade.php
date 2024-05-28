@@ -85,13 +85,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ url('finansial/table') }}" class="nav-link active">
+                            <a href="{{ url('pengeluaran/table') }}" class="nav-link active">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Income</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ url('pengeluaran/create') }}" class="nav-link active">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Expenses</p>
                             </a>

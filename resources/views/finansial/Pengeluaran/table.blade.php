@@ -33,25 +33,24 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
+                                    <th>Tanggal Pengeluaran</th>
                                     <th>Jenis Pengeluaran</th>
                                     <th>Keterangan</th>
                                     <th>Cost</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- @foreach ($something as $item)     --}}
+                                @foreach ($pengeluaran as $item)     
                                 <tr>
-                                    <td>Debug</td>
-                                    {{-- <td>{{ $item->id}}</td>
-                                    <td>{{ $item->tipe}}</td>
-                                    <td>{{ $item->status_kesehatan}}</td>
-                                    <td>{{ $item->harga_jual}}</td>
-                                    <td>{{ $item->harga_beli}}</td>
-                                    <td>{{ $item->foto}}</td>
+                                    <td>{{ $item->id}}</td>
+                                    <td>{{ $item}}</td>
+                                    <td>{{ $item->jenisPengeluaran}}</td>
+                                    <td>{{ $item->keterangan}}</td>
+                                    <td>{{ $item->cost}}</td>
                                     <td>
                                         <div class="row">
-                                            <a href="{{ url('sapi/edit/' . $item->id) }}" class="btn btn-warning mr-1"><i class="right fas fa-pen"></i></a>
-                                            <form action="{{ url('sapi/delete/' . $item->id) }}" method="POST">
+                                            <a href="{{ url('pengeluaran/edit/' . $item->id) }}" class="btn btn-warning mr-1"><i class="right fas fa-pen"></i></a>
+                                            <form action="{{ url('pengeluaran/delete/' . $item->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-danger" type="submit"
@@ -59,14 +58,13 @@
                                             </form>
                                         </div>
                                     </td>
-                                </tr> --}}
-                                {{-- @endforeach --}}
+                                </tr> 
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
                     <!-- /.card-body -->
                 </div>
-
             </div><!-- /.container-fluid -->
         </section>
         <!-- /.content -->

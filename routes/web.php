@@ -4,6 +4,7 @@ use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\SapiController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Auth;
 
@@ -46,4 +47,7 @@ Route::get('/sapi/edit/{id}', [SapiController::class, 'edit']);
 Route::put('/sapi/edit/{id}', [SapiController::class, 'update']);
 Route::delete('/sapi/delete/{id}', [SapiController::class, 'destroy']);
 
-Route::get('finansial/table', [PenjualanController::class, 'index']);
+Route::get('pemasukan/table', [PengeluaranController::class, 'index']);
+Route::get('pengeluaran/table', [PengeluaranController::class, 'index']);
+Route::get('pengeluaran/create', [PengeluaranController::class, 'create']);
+Route::post('pengeluaran/create', [PengeluaranController::class, 'store']);

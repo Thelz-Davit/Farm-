@@ -32,35 +32,24 @@
                     {{csrf_field()}}
                 <div class="card-body">
                     <div class="form-group">
-                    <label>Tipe Sapi</label>
-                    <select class="form-control" name="tipe">
-                        <option value="" disabled selected>Pilih Tipe Sapi</option>
-                        <option value="Limosin">Limosin</option>
-                        <option value="Simental">Simental</option>
-                        <option value="Brahman">Brahman</option>
-                        <option value="Bali">Bali</option>
-                        <option value="Madura">Madura</option>
-                        <option value="Jawa">Jawa</option>
-                        <option value="Malboro">Malboro</option>
+                    <label>Jenis Pengeluaran</label>
+                    <select class="form-control" name="jenis_pengeluaran">
+                        <option value="" disabled selected>Pilih Jenis Pengeluaran</option>
+                        <option value="Pakan">Pakan</option>
+                        <option value="Obat">Obat</option>
+                        <option value="Utilitas">Utilitas</option>
+                        <option value="Perawatan dan Perbaikan">Perawatan dan Perbaikan</option>
+                        <option value="Transportasi dan Pengeluaran">Transportasi dan Pengiriman</option>
+                        <option value="Lainnya">Lainnya</option>
                     </select>
                     </div>
                     <div class="form-group">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="status_kesehatan" value="Sehat" checked>
-                        <label class="form-check-label">Sehat</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="status_kesehatan" value="Tidak Sehat">
-                        <label class="form-check-label">Tidak Sehat</label>
-                    </div>
-                </div>
-                    <div class="form-group">
-                    <label for="harga_beli">Harga Jual</label>
-                    <input type="number" class="form-control" name="harga_jual" placeholder="Masukan Harga Jual">
+                    <label for="keterangan">Keterangan</label>
+                    <input type="text" class="form-control" name="keterangan" placeholder="Masukan Keterangan">
                     </div>
                     <div class="form-group">
-                    <label for="harga_beli">Harga Beli</label>
-                    <input type="number" class="form-control" name="harga_beli" placeholder="Masukan Harga Beli">
+                    <label for="cost">Cost</label>
+                    <input type="number" class="form-control" name="cost" placeholder="Masukan Cost">
                     </div>
                     {{-- <div class="form-group">
                     <label for="exampleInputFile">Foto</label>
