@@ -45,15 +45,34 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('index') }}" class="nav-link">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-shopping-cart"></i>
                         <p>
                             Pemesanan
+                            <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ url('pemesanan/create') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>
+                                    Formulir Pemesanan
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('pemesanan/table') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>
+                                    Data Pemesanan
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
-                <li class="nav-item menu-open">
-                    <a href="#" class="nav-link active">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-paw"></i>
                         <p>
                             Sapi
@@ -61,39 +80,39 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                          <a href="{{ url('sapi/create') }}" class="nav-link">
+                              <i class="far fa-circle nav-icon"></i>
+                              <p>Formulir Sapi</p>
+                          </a>
+                      </li>
                         <li class="nav-item">
                             <a href="{{ url('sapi/table') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Table</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('sapi/create') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Form</p>
+                                <p>Data Sapi</p>
                             </a>
                         </li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link active">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-chart-bar"></i>
                         <p>
-                            Financial
+                            Pengeluaran
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ url('finansial/table') }}" class="nav-link active">
+                            <a href="{{ url('pengeluaran/table') }}" class="nav-link active">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Income</p>
+                                <p>Data Pengeluaran</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ url('pengeluaran/create') }}" class="nav-link active">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Expenses</p>
+                                <p>Formulir Pengeluaran</p>
                             </a>
                         </li>
                     </ul>
