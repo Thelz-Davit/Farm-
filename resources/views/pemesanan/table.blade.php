@@ -27,6 +27,7 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
+                                    <th>Tgl</th>
                                     <th>Nama Pelanggan</th>
                                     <th>No Telp</th>
                                     <th>Alamat Pengiriman</th>
@@ -41,6 +42,7 @@
                                 @foreach ($pesan as $item)
                                     <tr>
                                         <td>{{ $item->id }}</td>
+                                        <td>{{ $item->created_at }}</td>
                                         <td>{{ $item->nama_pelanggan }}</td>
                                         <td>{{ $item->telp }}</td>
                                         <td>{{ $item->alamat_pengiriman }}</td>
@@ -51,7 +53,7 @@
                                             </button>
                                         </td>
                                         <td>{{ $item->status_pembayaran }}</td>
-                                        <td>{{ $item->pembayaran }}</td>
+                                        <td>Rp. <span class="pembayaran">{{ number_format($item->pembayaran) }}</span></td>
                                         <td>{{ $item->admin }}</td>
                                         <td>
                                             <div class="row">
@@ -89,8 +91,8 @@
                             <img class="img-fluid img-thumbnail mb-2" src="{{ asset($item->foto) }}" alt="" style="max-width: 100px;">
                             <p>Tipe Sapi : {{ $item->tipe }}</p>
                             <p>Status Kesehatan : {{ $item->status_kesehatan }}</p>
-                            <p>Harga Jual : {{ $item->harga_jual }}</p>
-                            <p>Harga Beli : {{ $item->harga_beli }}</p>
+                            <p>Harga Jual : Rp. <span class="harga-jual">{{ number_format($item->harga_jual) }}</span></p>
+                            <p>Harga Beli : Rp. <span class="harga-beli">{{ number_format($item->harga_beli) }}</span></p>
                         </div>
                     </div>
                     <!-- /.modal-content -->
@@ -112,8 +114,75 @@
           "responsive": true,
           "lengthChange": false,
           "autoWidth": false,
-          "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+          "buttons": [
+                    {
+                        extend: 'copy',
+                        text: 'Copy',
+                        exportOptions: {
+                            columns: ':not(:nth-child(5)):not(:nth-child(9))' // Exclude columns 4 and 5 (Phone and Address)
+                        }
+                    },
+                    {
+                        extend: 'csv',
+                        text: 'CSV',
+                        exportOptions: {
+                            columns: ':not(:nth-child(5)):not(:nth-child(9))' // Exclude columns 4 and 5 (Phone and Address)
+                        }
+                    },
+                    {
+                        extend: 'excel',
+                        text: 'Excel',
+                        exportOptions: {
+                            columns: ':not(:nth-child(5)):not(:nth-child(9))' // Exclude columns 4 and 5 (Phone and Address)
+                        }
+                    },
+                    {
+                        extend: 'pdf',
+                        text: 'PDF',
+                        exportOptions: {
+                            columns: ':not(:nth-child(5)):not(:nth-child(9))' // Exclude columns 4 and 5 (Phone and Address)
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        text: 'Print',
+                        exportOptions: {
+                            columns: ':not(:nth-child(5)):not(:nth-child(9))' // Exclude columns 4 and 5 (Phone and Address)
+                        }
+                    },
+                    "colvis"
+                ]
       }).buttons().container().appendTo('#table_pemesanan_wrapper .col-md-6:eq(0)');
   });
 </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let pembayaranElements = document.querySelectorAll('.pembayaran');
+        let hargaJualElements = document.querySelectorAll('.harga-jual');
+        let hargaBeliElements = document.querySelectorAll('.harga-beli');
+
+        pembayaranElements.forEach(function(element) {
+            let value = element.textContent;
+            element.textContent = addThousandSeparator(value);
+        });
+
+        hargaJualElements.forEach(function(element) {
+            let value = element.textContent;
+            element.textContent = addThousandSeparator(value);
+        });
+
+        hargaBeliElements.forEach(function(element) {
+            let value = element.textContent;
+            element.textContent = addThousandSeparator(value);
+        });
+
+        function addThousandSeparator(numberString) {
+            // Parse the number string removing non-digit characters
+            let number = parseFloat(numberString.replace(/\D/g, ''));
+            // Format the number with separators
+            return number.toLocaleString('id-ID');
+        }
+    });
+</script>
+
 @endsection

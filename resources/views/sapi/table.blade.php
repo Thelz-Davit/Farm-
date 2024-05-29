@@ -41,8 +41,10 @@
                                     <td>{{ $item->id}}</td>
                                     <td>{{ $item->tipe}}</td>
                                     <td>{{ $item->status_kesehatan}}</td>
-                                    <td>Rp. {{ $item->harga_jual}}</td>
-                                    <td>{{ $item->harga_beli}}</td>
+                                    {{-- <td>Rp. {{ $item->harga_jual}}</td>
+                                    <td>Rp. {{ $item->harga_beli}}</td> --}}
+                                    <td>Rp. <span class="harga-jual">{{ number_format($item->harga_jual) }}</span></td>
+                                    <td>Rp. <span class="harga-beli">{{ number_format($item->harga_beli) }}</span></td>
                                     <td><img class="img-fluid img-thumbnail" src="{{ asset($item->foto) }}" alt="" style="max-width: 100px;"></td>
                                     <td>
                                         <div class="row">
@@ -77,8 +79,69 @@
           "responsive": true,
           "lengthChange": false,
           "autoWidth": false,
-          "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+          "buttons": [
+                    {
+                        extend: 'copy',
+                        text: 'Copy',
+                        exportOptions: {
+                            columns: ':not(:nth-child(6)):not(:nth-child(7))' // Exclude columns 4 and 5 (Phone and Address)
+                        }
+                    },
+                    {
+                        extend: 'csv',
+                        text: 'CSV',
+                        exportOptions: {
+                            columns: ':not(:nth-child(6)):not(:nth-child(7))' // Exclude columns 4 and 5 (Phone and Address)
+                        }
+                    },
+                    {
+                        extend: 'excel',
+                        text: 'Excel',
+                        exportOptions: {
+                            columns: ':not(:nth-child(6)):not(:nth-child(7))' // Exclude columns 4 and 5 (Phone and Address)
+                        }
+                    },
+                    {
+                        extend: 'pdf',
+                        text: 'PDF',
+                        exportOptions: {
+                            columns: ':not(:nth-child(6)):not(:nth-child(7))' // Exclude columns 4 and 5 (Phone and Address)
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        text: 'Print',
+                        exportOptions: {
+                            columns: ':not(:nth-child(6)):not(:nth-child(7))' // Exclude columns 4 and 5 (Phone and Address)
+                        }
+                    },
+                    "colvis"
+                ]
       }).buttons().container().appendTo('#table_sapi_wrapper .col-md-6:eq(0)');
   });
 </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let hargaJualElements = document.querySelectorAll('.harga-jual');
+        let hargaBeliElements = document.querySelectorAll('.harga-beli');
+
+        hargaJualElements.forEach(function(element) {
+            let value = element.textContent;
+            element.textContent = addThousandSeparator(value);
+        });
+
+        hargaBeliElements.forEach(function(element) {
+            let value = element.textContent;
+            element.textContent = addThousandSeparator(value);
+        });
+
+        function addThousandSeparator(numberString) {
+            // Parse the number string removing non-digit characters
+            let number = parseFloat(numberString.replace(/\D/g, ''));
+            // Format the number with separators
+            return number.toLocaleString('id-ID');
+        }
+    });
+</script>
+
 @endsection

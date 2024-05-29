@@ -10,7 +10,6 @@
           <div class="col-sm-6">
             <h1 class="m-0">Dashboard</h1>
             <p>{{ Auth::user()->name }}</p>
-            <p>{{ $pemesananByMonth}}</p>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -167,6 +166,14 @@
 
 @section('scripts')
 <script>
+  var data = {!! json_encode($pemesananGrouped) !!};
+  var labels = data.map(function(item) {
+    return item.tipe;
+  });
+  var values = data.map(function(item) {
+    return item.total;
+  });
+  console.log(values)
   $(function() {
       var areaChartData = {
           labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Aug', 'Sept', 'Okt', 'Nov', 'Des'],

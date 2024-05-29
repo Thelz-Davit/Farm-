@@ -40,6 +40,18 @@ class DashboardController extends Controller
             // ->orderBy('year', 'month')
             ->get();
 
-        return view('index', compact('count', 'countPemesanan', 'sumForCurrentMonth', 'uniqueCustomerCount', 'groupBySapi', 'pemesananByMonth'));
+        $pemesananGrouped = Pemesanan::select(
+            DB::raw('YEAR(pemesanan.created_at) as year'),
+            DB::raw('MONTH(pemesanan.created_at) as month'),
+            'sapi.tipe',
+            DB::raw('COUNT(*) as total_count'),
+            DB::raw('SUM(pemesanan.pembayaran) as total_pembayaran')
+        )
+        ->join('sapi', 'pemesanan.id_sapi', '=', 'sapi.id')
+        ->groupBy('year', 'month', 'sapi.tipe')
+        // ->orderBy('year', 'month')
+        ->get();
+
+        return view('index', compact('count', 'countPemesanan', 'sumForCurrentMonth', 'uniqueCustomerCount', 'groupBySapi', 'pemesananGrouped'));
     }
 }

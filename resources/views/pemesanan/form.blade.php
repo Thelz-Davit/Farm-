@@ -54,13 +54,13 @@
                             <div class="form-group">
                                 <label for="status_pembayaran">Jenis Pembayaran</label>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="status_pembayaran" value="DP"
+                                    <input class="form-check-input" type="radio" name="status_pembayaran" value="Tunai"
                                         checked>
-                                    <label class="form-check-label">DP</label>
+                                    <label class="form-check-label">Tunai</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="status_pembayaran" value="Lunas">
-                                    <label class="form-check-label">Lunas</label>
+                                    <input class="form-check-input" type="radio" name="status_pembayaran" value="Transfer">
+                                    <label class="form-check-label">Transfer</label>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -71,7 +71,7 @@
                                     </div>
                                     {{-- <input type="text" class="form-control" name="pembayaran" id="pembayaran"
                                         type="number"> --}}
-                                    <input type="number" class="form-control" name="formatted_pembayaran" id="pembayaran">
+                                    <input type="text" class="form-control" name="formatted_pembayaran" id="pembayaran">
                                     <input type="hidden" name="pembayaran" id="raw_pembayaran">
                                 </div>
                             </div>
@@ -81,7 +81,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Rp</span>
                                     </div>
-                                    <input type="text" class="form-control" id="sisa_pembayaran">
+                                    <input type="text" class="form-control" id="sisa_pembayaran" readonly>
                                 </div>
                             </div>
                             {{-- masih rusak harusnya fetch admin tp for now 1 dulu aja value id adminnya --}}
@@ -99,22 +99,6 @@
         </section>
         <!-- /.content -->
     </div>
-    {{-- <script>
-        document.getElementById('pembayaran').addEventListener('input', function(e) {
-            // Get the raw value by removing any non-digit characters
-            let rawValue = e.target.value.replace(/\D/g, '');
-
-            // Add dots as thousands separators for display purposes
-            let formattedValue = rawValue.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-
-            // Update the visible input value with the formatted value
-            e.target.value = formattedValue;
-
-            // Update the hidden input with the raw numeric value
-            document.getElementById('raw_pembayaran').value = rawValue;
-
-        });
-    </script> --}}
     <script>
         const pembayaranInput = document.getElementById('pembayaran');
         const rawPembayaranInput = document.getElementById('raw_pembayaran');
@@ -141,7 +125,7 @@
 
             // Update the hidden input with the raw numeric value
             rawPembayaranInput.value = rawValue;
-
+            console.log(rawPembayaranInput);
             updateSisaPembayaran();
         });
 
