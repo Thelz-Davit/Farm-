@@ -69,7 +69,8 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Rp</span>
                                     </div>
-                                    {{-- <input type="number" class="form-control" name="pembayaran" id="pembayaran"> --}}
+                                    {{-- <input type="text" class="form-control" name="pembayaran" id="pembayaran"
+                                        type="number"> --}}
                                     <input type="text" class="form-control" name="formatted_pembayaran" id="pembayaran">
                                     <input type="hidden" name="pembayaran" id="raw_pembayaran">
                                 </div>
@@ -83,6 +84,7 @@
                                     <input type="text" class="form-control" id="sisa_pembayaran" readonly>
                                 </div>
                             </div>
+                            {{-- masih rusak harusnya fetch admin tp for now 1 dulu aja value id adminnya --}}
                             <div class="form-group">
                                 <input type="hidden" class="form-control" name="admin" value="{{ Auth::user()->name }}">
                             </div>
@@ -117,13 +119,13 @@
 
             // Add dots as thousands separators for display purposes
             let formattedValue = rawValue.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-            // let formattedValue = new Intl.NumberFormat('id-ID', { maximumSignificantDigits: 3 }).format(rawValue);
 
             // Update the visible input value with the formatted value
             e.target.value = formattedValue;
 
             // Update the hidden input with the raw numeric value
-            rawPembayaranInput.value = parseInt(rawValue);
+            rawPembayaranInput.value = rawValue;
+            console.log(rawPembayaranInput);
             updateSisaPembayaran();
         });
 

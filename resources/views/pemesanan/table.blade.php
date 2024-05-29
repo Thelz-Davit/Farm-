@@ -119,35 +119,35 @@
                         extend: 'copy',
                         text: 'Copy',
                         exportOptions: {
-                            columns: ':not(:nth-child(5)):not(:nth-child(9))' // Exclude columns 4 and 5 (Phone and Address)
+                            columns: ':not(:nth-child(6)):not(:nth-child(10))' // Exclude columns 4 and 5 (Phone and Address)
                         }
                     },
                     {
                         extend: 'csv',
                         text: 'CSV',
                         exportOptions: {
-                            columns: ':not(:nth-child(5)):not(:nth-child(9))' // Exclude columns 4 and 5 (Phone and Address)
+                            columns: ':not(:nth-child(6)):not(:nth-child(10))' // Exclude columns 4 and 5 (Phone and Address)
                         }
                     },
                     {
                         extend: 'excel',
                         text: 'Excel',
                         exportOptions: {
-                            columns: ':not(:nth-child(5)):not(:nth-child(9))' // Exclude columns 4 and 5 (Phone and Address)
+                            columns: ':not(:nth-child(6)):not(:nth-child(10))' // Exclude columns 4 and 5 (Phone and Address)
                         }
                     },
                     {
                         extend: 'pdf',
                         text: 'PDF',
                         exportOptions: {
-                            columns: ':not(:nth-child(5)):not(:nth-child(9))' // Exclude columns 4 and 5 (Phone and Address)
+                            columns: ':not(:nth-child(6)):not(:nth-child(10))' // Exclude columns 4 and 5 (Phone and Address)
                         }
                     },
                     {
                         extend: 'print',
                         text: 'Print',
                         exportOptions: {
-                            columns: ':not(:nth-child(5)):not(:nth-child(9))' // Exclude columns 4 and 5 (Phone and Address)
+                            columns: ':not(:nth-child(6)):not(:nth-child(10))' // Exclude columns 4 and 5 (Phone and Address)
                         }
                     },
                     "colvis"
@@ -184,5 +184,4 @@
         }
     });
 </script>
-
 @endsection

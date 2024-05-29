@@ -98,7 +98,7 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-chart-bar"></i>
                         <p>
-                            Financial
+                            Pengeluaran
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -106,13 +106,13 @@
                         <li class="nav-item">
                             <a href="{{ url('pengeluaran/table') }}" class="nav-link active">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Income</p>
+                                <p>Data Pengeluaran</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ url('pengeluaran/create') }}" class="nav-link active">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Expenses</p>
+                                <p>Formulir Pengeluaran</p>
                             </a>
                         </li>
                     </ul>

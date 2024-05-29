@@ -58,6 +58,7 @@ Route::post('pemesanan/create', [PemesananController::class, 'store']);
 Route::get('pemesanan/table', [PemesananController::class, 'index']);
 Route::get('pemesanan/table/{id}', [PemesananController::class, 'show'])->name('pemesanan.show');
 Route::put('/pemesanan/edit/{id}', [PemesananController::class, 'update']);
+Route::get('/pemesanan/edit/{id}', [PemesananController::class, 'edit']);
 Route::delete('/pemesanan/delete/{id}', [PemesananController::class, 'destroy']);
 
 Route::get('pengeluaran/create', [PengeluaranController::class, 'create']);

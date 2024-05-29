@@ -35,7 +35,7 @@ class PemesananController extends Controller
         // return redirect('pemesanan/table');
 
         $input = $request->all();
-        $input['pembayaran'] = $request->input('formatted_pembayaran'); // Ensure 'pembayaran' field is set correctly
+        // $input['pembayaran'] = $request->input('formatted_pembayaran'); // Ensure 'pembayaran' field is set correctly
         $input['admin'] = auth()->user()->name;  // Assuming the user is authenticated
 
         // Start a database transaction
@@ -70,6 +70,12 @@ class PemesananController extends Controller
         //untuk modal
         $pesanan = Sapi::find($id);
         return response()->json($pesanan);
+    }
+
+    public function edit($id)
+    {
+        $pemesanan = Pemesanan::findOrFail($id);
+        return view('pemesanan.edit', compact('pemesanan'));
     }
 
     public function update(Request $request, $id)

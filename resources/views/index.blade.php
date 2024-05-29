@@ -69,7 +69,7 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>{{ $sumForCurrentMonth}}</h3>
+                <h3 style="font-size: 34px">Rp.{{ $sumForCurrentMonth}}</h3>
 
                 <p>Pemasukan Bulan Ini</p>
               </div>
@@ -86,7 +86,7 @@
         <div class="row">
           <!-- Left col -->
           <section class="col-lg-7 connectedSortable">
-            {{-- <div class="card">
+            <div class="card">
               <div class="card-header">
                 <h3 class="card-title">Pemesanan</h3>
 
@@ -105,7 +105,7 @@
                 </div>
               </div>
               <!-- /.card-body -->
-            </div> --}}
+            </div>
           </section>
           <!-- /.Left col -->
           <!-- right col (We are only adding the ID to make the widgets sortable)-->
@@ -173,14 +173,14 @@
   var values = data.map(function(item) {
     return item.total;
   });
-  console.log(values)
+  console.log(data)
   $(function() {
       var areaChartData = {
           labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Aug', 'Sept', 'Okt', 'Nov', 'Des'],
           datasets: [{
                   label: 'Limosin',
-                  backgroundColor: 'rgba(60,141,188,0.9)',
-                  borderColor: 'rgba(60,141,188,0.8)',
+                  backgroundColor: '#C40C0C',
+                  borderColor: '#C40C0C',
                   pointRadius: false,
                   pointColor: '#3b8bba',
                   pointStrokeColor: 'rgba(60,141,188,1)',
@@ -190,8 +190,8 @@
               },
               {
                   label: 'Simental',
-                  backgroundColor: 'rgba(210, 214, 222, 1)',
-                  borderColor: 'rgba(210, 214, 222, 1)',
+                  backgroundColor: '#FF6500',
+                  borderColor: '#FF6500',
                   pointRadius: false,
                   pointColor: 'rgba(210, 214, 222, 1)',
                   pointStrokeColor: '#c1c7d1',
@@ -201,8 +201,8 @@
               },
               {
                   label: 'Brahman',
-                  backgroundColor: 'rgba(12, 52, 128, 0.7)',
-                  borderColor: 'rgba(12, 52, 128, 0.7)',
+                  backgroundColor: '#FF8A08',
+                  borderColor: '#FF8A08',
                   pointRadius: false,
                   pointColor: 'rgba(12, 52, 128, 0.7)',
                   pointStrokeColor: '#c1c7d1',
@@ -212,8 +212,8 @@
               },
               {
                   label: 'Bali',
-                  backgroundColor: 'rgba(24, 104, 86, 0.8)',
-                  borderColor: 'rgba(24, 104, 86, 0.8)',
+                  backgroundColor: '#FFC100',
+                  borderColor: '#FFC100',
                   pointRadius: false,
                   pointColor: 'rgba(24, 104, 86, 0.8)',
                   pointStrokeColor: '#c1c7d1',
@@ -223,8 +223,8 @@
               },
               {
                   label: 'Madura',
-                  backgroundColor: 'rgba(252, 16, 3, 0.4)',
-                  borderColor: 'rgba(252, 16, 3, 0.4)',
+                  backgroundColor: '#BFEA7C',
+                  borderColor: '#BFEA7C',
                   pointRadius: false,
                   pointColor: 'rgba(252, 16, 3, 0.4)',
                   pointStrokeColor: '#c1c7d1',

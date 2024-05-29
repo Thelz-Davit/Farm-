@@ -7,13 +7,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Pemasukan</h1>
-                    </div><!-- /.col -->
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Pengeluaran</li>
-                        </ol>
+                        <h1 class="m-0">Pengeluaran</h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -29,7 +23,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped">
+                        <table id="table_pengeluaran" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -43,8 +37,8 @@
                                 @foreach ($pengeluaran as $item)     
                                 <tr>
                                     <td>{{ $item->id}}</td>
-                                    <td>{{ $item}}</td>
-                                    <td>{{ $item->jenisPengeluaran}}</td>
+                                    <td>{{ $item->created_at}}</td>
+                                    <td>{{ $item->jenis_pengeluaran}}</td>
                                     <td>{{ $item->keterangan}}</td>
                                     <td>{{ $item->cost}}</td>
                                     <td>
@@ -70,4 +64,54 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
+@endsection
+
+@section('scripts')
+<script>
+  $(function() {
+      $("#table_pengeluaran").DataTable({
+          "responsive": true,
+          "lengthChange": false,
+          "autoWidth": false,
+          "buttons": [
+                    {
+                        extend: 'copy',
+                        text: 'Copy',
+                        exportOptions: {
+                            columns: ':not(:nth-child(6))' // Exclude columns 4 and 5 (Phone and Address)
+                        }
+                    },
+                    {
+                        extend: 'csv',
+                        text: 'CSV',
+                        exportOptions: {
+                            columns: ':not(:nth-child(6))' // Exclude columns 4 and 5 (Phone and Address)
+                        }
+                    },
+                    {
+                        extend: 'excel',
+                        text: 'Excel',
+                        exportOptions: {
+                            columns: ':not(:nth-child(6))' // Exclude columns 4 and 5 (Phone and Address)
+                        }
+                    },
+                    {
+                        extend: 'pdf',
+                        text: 'PDF',
+                        exportOptions: {
+                            columns: ':not(:nth-child(6))' // Exclude columns 4 and 5 (Phone and Address)
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        text: 'Print',
+                        exportOptions: {
+                            columns: ':not(:nth-child(6))' // Exclude columns 4 and 5 (Phone and Address)
+                        }
+                    },
+                    "colvis"
+                ]
+      }).buttons().container().appendTo('#table_pengeluaran_wrapper .col-md-6:eq(0)');
+  });
+</script>
 @endsection
