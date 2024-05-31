@@ -166,7 +166,7 @@
 
 @section('scripts')
 <script>
-  var data = {!! json_encode($pemesananGrouped) !!};
+  // var data = {!! json_encode($pemesananGrouped) !!};
   var labels = data.map(function(item) {
     return item.tipe;
   });
@@ -320,7 +320,7 @@
   });
 </script>
 <script>
-  var data = {!! json_encode($groupBySapi) !!};
+  // var data = {!! json_encode($groupBySapi) !!};
   var labels = data.map(function(item) {
     return item.tipe;
   });
