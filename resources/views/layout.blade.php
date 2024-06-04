@@ -37,17 +37,17 @@
 
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="{{ url('img/AdminLTELogo.png') }}" alt="AdminLTELogo" height="60"
+            <img class="animation__shake" src="{{ url('img/RoFarm.jpg') }}" alt="Rancaoray" height="60"
                 width="60">
         </div>
 
         @include('header')
 
-        @include('sidebar');
+        @include('sidebar')
 
-        @yield('content');
+        @yield('content')
 
-        @include('footer');
+        @include('footer')
 
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">

@@ -23,6 +23,16 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
+                        <div class="mb-2">
+                            <form action="{{ url('sapi/import') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <label for="file">Import CSV</label>
+                                <div class="row mb-4">
+                                    <input class="form-control-sm col-4" type="file" name="file" accept=".csv">
+                                    <button type="submit">Upload</button>
+                                </div>
+                            </form>
+                        </div>
                         <table id="table_sapi" class="table table-bordered table-striped">
                             <thead>
                                 <tr>

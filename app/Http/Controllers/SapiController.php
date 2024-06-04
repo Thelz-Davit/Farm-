@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Sapi;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class SapiController extends Controller
@@ -61,4 +62,38 @@ class SapiController extends Controller
         $sapi->delete();
         return redirect('sapi/table');
     }
+
+    public function import(Request $request)
+    {
+
+        $file = $request->file('file');
+        $fileContents = file($file->getPathname());
+
+        // Skip the header row by slicing the array from the second element
+        $fileContents = array_slice($fileContents, 1);
+
+        foreach ($fileContents as $line) {
+            $data = str_getcsv($line);
+
+            if (
+                isset($data[0], $data[1], $data[2], $data[3]) &&
+                is_numeric($data[2]) && is_numeric($data[3])
+            ) {
+
+                Sapi::create([
+                    'tipe' => $data[0],
+                    'status_kesehatan' => $data[1],
+                    'harga_jual' => (int) $data[2], // Convert to integer
+                    'harga_beli' => (int) $data[3], // Convert to integer
+                ]);
+            } else {
+                // Log invalid data
+                // Log::warning('Invalid data in CSV line:', $data);
+            }
+        }
+
+        return redirect()->back()->with('success', 'CSV file imported successfully.');
+    }
+
+
 }
