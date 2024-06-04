@@ -88,7 +88,7 @@
                 <p>Pengeluaran</p>
               </div>
               <div class="icon">
-                <i class="ion ion-pie-graph"></i>
+                <i class="ion ion-person-add"></i>
               </div>
               <a href="{{ url('pengeluaran/table') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -399,7 +399,7 @@ function getRandomColor() {
 
 </script>
 <script>
-  var data = {!! json_encode($groupBySapi) !!};
+  // var data = {!! json_encode($groupBySapi) !!};
   var labels = data.map(function(item) {
     return item.tipe;
   });
