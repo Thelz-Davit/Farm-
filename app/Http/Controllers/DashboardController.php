@@ -42,7 +42,8 @@ class DashboardController extends Controller
 
         $uniqueCustomerCount = Pemesanan::distinct('nama_pelanggan')->count('nama_pelanggan');
 
-        $groupBySapi = Sapi::select('tipe', DB::raw('count(*) as total'))
+        $groupBySapi = Sapi::where('availability', 1)
+            ->select('tipe', DB::raw('count(*) as total'))
             ->groupBy('tipe')
             ->get();
 

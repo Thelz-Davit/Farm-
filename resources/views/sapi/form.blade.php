@@ -51,14 +51,26 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="harga_beli">Harga Jual</label>
-                                <input type="number" class="form-control" name="harga_jual"
-                                    placeholder="Masukan Harga Jual">
+                                <label for="harga_jual">Harga Jual</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Rp</span>
+                                    </div>
+                                    {{-- <input type="text" class="form-control" name="formatted_pembayaran" id="pembayaran">
+                                    <input type="hidden" name="pembayaran" id="raw_pembayaran"> --}}
+                                    <input type="number" class="form-control" name="harga_jual" placeholder="Masukan Harga Jual">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="harga_beli">Harga Beli</label>
-                                <input type="number" class="form-control" name="harga_beli"
-                                    placeholder="Masukan Harga Beli">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Rp</span>
+                                    </div>
+                                    {{-- <input type="text" class="form-control" name="formatted_pembayaran" id="pembayaran">
+                                    <input type="hidden" name="pembayaran" id="raw_pembayaran"> --}}
+                                    <input type="number" class="form-control" name="harga_beli" placeholder="Masukan Harga Beli">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="foto">Foto</label>

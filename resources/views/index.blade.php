@@ -59,7 +59,7 @@
                 <p>Total Revenue</p>
               </div>
               <div class="icon">
-                <i class="ion ion-person-add"></i>
+                <i class="ion ion-pie-graph"></i>
               </div>
               <a href="{{ url('pemesanan/table') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -88,7 +88,7 @@
                 <p>Pengeluaran</p>
               </div>
               <div class="icon">
-                <i class="ion ion-pie-graph"></i>
+                <i class="ion ion-person-add"></i>
               </div>
               <a href="{{ url('pengeluaran/table') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -181,12 +181,17 @@
 
 @section('scripts')
 <<<<<<< HEAD
+<<<<<<< HEAD
 <script>
   // var data = {!! json_encode($pemesananGrouped) !!};
 =======
 {{-- <script>
   var data = {!! json_encode($pemesananGrouped) !!};
 >>>>>>> 3c37f14a0d0175c633b4d1d4d683b57fc49f556d
+=======
+{{-- <script>
+  var data = {!! json_encode($pemesananGrouped) !!};
+>>>>>>> 5183b06cafa3a7b45a8466a875e182ed47d16eb1
   var labels = data.map(function(item) {
     return item.tipe;
   });
@@ -404,7 +409,7 @@ function getRandomColor() {
 
 </script>
 <script>
-  // var data = {!! json_encode($groupBySapi) !!};
+  var data = {!! json_encode($groupBySapi) !!};
   var labels = data.map(function(item) {
     return item.tipe;
   });
