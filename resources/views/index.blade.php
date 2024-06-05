@@ -399,7 +399,7 @@ function getRandomColor() {
 
 </script>
 <script>
-  // var data = {!! json_encode($groupBySapi) !!};
+  var data = {!! json_encode($groupBySapi) !!};
   var labels = data.map(function(item) {
     return item.tipe;
   });
