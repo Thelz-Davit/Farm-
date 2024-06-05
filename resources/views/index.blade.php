@@ -41,11 +41,7 @@
             <div class="small-box bg-info">
               <div class="inner">
                 <h3>{{ $count }}</h3>
-<<<<<<< HEAD
-                <p>Total Pengeluaran</p>
-=======
                 <p>Jumlah Sapi Tersedia</p>
->>>>>>> 2a3d2cc9fa8f9f3da991f1d619ea35d792f86311
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
@@ -60,26 +56,7 @@
               <div class="inner">
                 <h3>RP. {{ $pemasukanKotor }}</h3>
 
-<<<<<<< HEAD
-                <p>Total Keuntungan</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-person-add"></i>
-              </div>
-              <a href="{{ url('pemesanan/table') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3 style="font-size: 34px">Rp.{{ $sumForCurrentMonth}}</h3>
-
-                <p>Total Pemasukan</p>
-=======
                 <p>Total Revenue</p>
->>>>>>> 2a3d2cc9fa8f9f3da991f1d619ea35d792f86311
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
