@@ -41,7 +41,7 @@
             <div class="small-box bg-success">
               <div class="inner">
                 <h3>{{ $count }}</h3>
-                <p>Jumlah Sapi</p>
+                <p>Total Pengeluaran</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
@@ -56,7 +56,7 @@
               <div class="inner">
                 <h3>{{ $uniqueCustomerCount }}</h3>
 
-                <p>Pembeli</p>
+                <p>Total Keuntungan</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
@@ -71,7 +71,7 @@
               <div class="inner">
                 <h3 style="font-size: 34px">Rp.{{ $sumForCurrentMonth}}</h3>
 
-                <p>Pemasukan Bulan Ini</p>
+                <p>Total Pemasukan</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
