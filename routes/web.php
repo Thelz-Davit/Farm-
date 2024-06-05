@@ -37,6 +37,7 @@ Route::middleware(['auth'])->group(function(){
 Route::get('sapi/table', [SapiController::class, 'index']);
 Route::get('sapi/create', [SapiController::class, 'create']);
 Route::post('sapi/create', [SapiController::class, 'store']);
+Route::post('sapi/import', [SapiController::class, 'import']);
 
 Route::get('/sapi/edit/{id}', [SapiController::class, 'edit']);
 Route::put('/sapi/edit/{id}', [SapiController::class, 'update']);
@@ -52,6 +53,7 @@ Route::get('pemesanan/table/{id}', [PemesananController::class, 'show'])->name('
 Route::put('/pemesanan/edit/{id}', [PemesananController::class, 'update']);
 Route::get('/pemesanan/edit/{id}', [PemesananController::class, 'edit']);
 Route::delete('/pemesanan/delete/{id}', [PemesananController::class, 'destroy']);
+Route::post('pemesanan/import', [PemesananController::class, 'import']);
 
 Route::get('pengeluaran/create', [PengeluaranController::class, 'create']);
 Route::post('pengeluaran/create', [PengeluaranController::class, 'store']);

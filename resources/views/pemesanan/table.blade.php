@@ -23,6 +23,16 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
+                        {{-- <div class="mb-2">
+                            <form action="{{ url('pemesanan/import') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <label for="file">Import CSV</label>
+                                <div class="row mb-4">
+                                    <input class="form-control-sm col-4" type="file" name="file" accept=".csv">
+                                    <button type="submit">Upload</button>
+                                </div>
+                            </form>
+                        </div> --}}
                         <table id="table_pemesanan" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
@@ -91,8 +101,8 @@
                             <img class="img-fluid img-thumbnail mb-2" src="{{ asset($item->foto) }}" alt="" style="max-width: 100px;">
                             <p>Tipe Sapi : {{ $item->tipe }}</p>
                             <p>Status Kesehatan : {{ $item->status_kesehatan }}</p>
-                            <p>Harga Jual : Rp. <span class="harga-jual">{{ number_format($item->harga_jual) }}</span></p>
                             <p>Harga Beli : Rp. <span class="harga-beli">{{ number_format($item->harga_beli) }}</span></p>
+                            <p>Harga Jual : Rp. <span class="harga-jual">{{ number_format($item->harga_jual) }}</span></p>
                         </div>
                     </div>
                     <!-- /.modal-content -->
