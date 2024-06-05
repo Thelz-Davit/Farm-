@@ -8,7 +8,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
+            <h1 class="m-0">Dashboard | RancaOrayFarm</h1>
             <p>{{ Auth::user()->name }}</p>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -21,7 +21,7 @@
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-          <div class="col-lg-3 col-6">
+          {{-- <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
@@ -34,14 +34,14 @@
               </div>
               <a href="{{ url('pemesanan/table') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
-          </div>
+          </div> --}}
           <!-- ./col -->
-          <div class="col-lg-3 col-6">
+          <div class="col">
             <!-- small box -->
-            <div class="small-box bg-success">
+            <div class="small-box bg-info">
               <div class="inner">
                 <h3>{{ $count }}</h3>
-                <p>Jumlah Sapi</p>
+                <p>Jumlah Sapi Tersedia</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
@@ -50,13 +50,13 @@
             </div>
           </div>
           <!-- ./col -->
-          <div class="col-lg-3 col-6">
+          <div class="col">
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>{{ $uniqueCustomerCount }}</h3>
+                <h3>RP. {{ $pemasukanKotor }}</h3>
 
-                <p>Pembeli</p>
+                <p>Total Revenue</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
@@ -65,21 +65,36 @@
             </div>
           </div>
           <!-- ./col -->
+          @if(Auth::user()->name == 'admin')
+            <div class="col">
+              <!-- small box -->
+              <div class="small-box bg-success">
+                <div class="inner">
+                  <h3>Rp. {{ $difference }}</h3>
+                  <p>Total Income</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-pie-graph"></i>
+                </div>
+                <a href="{{ url('pemesanan/table') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              </div>
+            </div>
+          @else
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3 style="font-size: 34px">Rp.{{ $sumForCurrentMonth}}</h3>
-
-                <p>Pemasukan Bulan Ini</p>
+                <h3 style="font-size: 34px">Rp. {{ $pengeluaran }}</h3>
+                <p>Pengeluaran</p>
               </div>
               <div class="icon">
-                <i class="ion ion-person-add"></i>
+                <i class="ion ion-pie-graph"></i>
               </div>
-              <a href="{{ url('pemesanan/table') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{ url('pengeluaran/table') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
+          @endif
         </div>
         <!-- /.row -->
         <!-- Main row -->
@@ -165,8 +180,13 @@
 @endsection
 
 @section('scripts')
+<<<<<<< HEAD
 <script>
   // var data = {!! json_encode($pemesananGrouped) !!};
+=======
+{{-- <script>
+  var data = {!! json_encode($pemesananGrouped) !!};
+>>>>>>> 3c37f14a0d0175c633b4d1d4d683b57fc49f556d
   var labels = data.map(function(item) {
     return item.tipe;
   });
@@ -174,6 +194,7 @@
     return item.total;
   });
   console.log(data)
+  console.log(labels)
   $(function() {
       var areaChartData = {
           labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Aug', 'Sept', 'Okt', 'Nov', 'Des'],
@@ -318,6 +339,69 @@
       options: barChartOptions
     })
   });
+</script> --}}
+<script>
+
+var data = {!! json_encode($pemesananGrouped) !!};
+var labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+var datasets = [];
+var types = ['Limosin', 'Simental', 'Brahman', 'Bali', 'Madura', 'Jawa', 'Malboro'];
+
+types.forEach(function(type) {
+    var dataValues = [];
+    labels.forEach(function(label) {
+        var total = 0;
+        data.forEach(function(entry) {
+            if (entry.month === label) {
+                entry.count.forEach(function(count) {
+                    if (count.tipe === type) {
+                        total += count.total;
+                    }
+                });
+            }
+        });
+        dataValues.push(total);
+    });
+    datasets.push({
+        label: type,
+        backgroundColor: getRandomColor(), // You need to define this function to get random colors
+        borderColor: getRandomColor(),
+        data: dataValues
+    });
+});
+// Create Chart.js configuration
+var areaChartData = {
+    labels: labels,
+    datasets: datasets
+};
+
+// Render the chart using Chart.js
+var ctx = document.getElementById('stackedBarChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: areaChartData,
+    options: {
+        scales: {
+            xAxes: [{
+                stacked: true
+            }],
+            yAxes: [{
+                stacked: true
+            }]
+        }
+    }
+});
+
+// Function to generate random color
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
 </script>
 <script>
   // var data = {!! json_encode($groupBySapi) !!};

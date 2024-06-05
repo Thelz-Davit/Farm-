@@ -63,18 +63,6 @@
                       <label for="tipeSapi">Harga Beli</label>
                       <input type="text" class="form-control" name="harga_beli" placeholder="Masukan Tipe Sapi" value="{{ $sapi->harga_beli}}">
                     </div>
-                    {{-- <div class="form-group">
-                      <label for="exampleInputFile">Foto</label>
-                      <div class="input-group">
-                        <div class="custom-file">
-                          <input type="file" class="custom-file-input" id="exampleInputFile">
-                          <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                        </div>
-                        <div class="input-group-append">
-                          <span class="input-group-text">Upload</span>
-                        </div>
-                      </div>
-                    </div> --}}
                   </div>
                   <!-- /.card-body -->
   

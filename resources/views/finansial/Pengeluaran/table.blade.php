@@ -68,50 +68,50 @@
 
 @section('scripts')
 <script>
-  $(function() {
-      $("#table_pengeluaran").DataTable({
-          "responsive": true,
-          "lengthChange": false,
-          "autoWidth": false,
-          "buttons": [
-                    {
-                        extend: 'copy',
-                        text: 'Copy',
-                        exportOptions: {
-                            columns: ':not(:nth-child(6))' // Exclude columns 4 and 5 (Phone and Address)
-                        }
-                    },
-                    {
-                        extend: 'csv',
-                        text: 'CSV',
-                        exportOptions: {
-                            columns: ':not(:nth-child(6))' // Exclude columns 4 and 5 (Phone and Address)
-                        }
-                    },
-                    {
-                        extend: 'excel',
-                        text: 'Excel',
-                        exportOptions: {
-                            columns: ':not(:nth-child(6))' // Exclude columns 4 and 5 (Phone and Address)
-                        }
-                    },
-                    {
-                        extend: 'pdf',
-                        text: 'PDF',
-                        exportOptions: {
-                            columns: ':not(:nth-child(6))' // Exclude columns 4 and 5 (Phone and Address)
-                        }
-                    },
-                    {
-                        extend: 'print',
-                        text: 'Print',
-                        exportOptions: {
-                            columns: ':not(:nth-child(6))' // Exclude columns 4 and 5 (Phone and Address)
-                        }
-                    },
-                    "colvis"
-                ]
-      }).buttons().container().appendTo('#table_pengeluaran_wrapper .col-md-6:eq(0)');
-  });
+    $(function() {
+        $("#table_pengeluaran").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "buttons": [
+                      {
+                          extend: 'copy',
+                          text: 'Copy',
+                          exportOptions: {
+                              columns: ':not(:nth-child(6)):not(:nth-child(10))' // Exclude columns 4 and 5 (Phone and Address)
+                          }
+                      },
+                      {
+                          extend: 'csv',
+                          text: 'CSV',
+                          exportOptions: {
+                              columns: ':not(:nth-child(6)):not(:nth-child(10))' // Exclude columns 4 and 5 (Phone and Address)
+                          }
+                      },
+                      {
+                          extend: 'excel',
+                          text: 'Excel',
+                          exportOptions: {
+                              columns: ':not(:nth-child(6)):not(:nth-child(10))' // Exclude columns 4 and 5 (Phone and Address)
+                          }
+                      },
+                      {
+                          extend: 'pdf',
+                          text: 'PDF',
+                          exportOptions: {
+                              columns: ':not(:nth-child(6)):not(:nth-child(10))' // Exclude columns 4 and 5 (Phone and Address)
+                          }
+                      },
+                      {
+                          extend: 'print',
+                          text: 'Print',
+                          exportOptions: {
+                              columns: ':not(:nth-child(6)):not(:nth-child(10))' // Exclude columns 4 and 5 (Phone and Address)
+                          }
+                      },
+                      "colvis"
+                  ]
+        }).buttons().container().appendTo('#table_pengeluaran_wrapper .col-md-6:eq(0)');
+    });
 </script>
 @endsection
