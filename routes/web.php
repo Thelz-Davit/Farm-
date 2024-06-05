@@ -34,14 +34,6 @@ Route::middleware(['auth'])->group(function(){
     Route::get('index', [DashboardController::class, 'count']);
 });
 
-// Route::get('/sapi/table', function () {
-//     return view('sapi.table');
-// });
-
-// Route::get('/sapi/create', function () {
-//     return view('sapi.form');
-// });
-
 Route::get('sapi/table', [SapiController::class, 'index']);
 Route::get('sapi/create', [SapiController::class, 'create']);
 Route::post('sapi/create', [SapiController::class, 'store']);
