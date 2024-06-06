@@ -75,7 +75,9 @@ class PemesananController extends Controller
     public function edit($id)
     {
         $pemesanan = Pemesanan::findOrFail($id);
-        return view('pemesanan.edit', compact('pemesanan'));
+        $sapi = Sapi::where('availability', 1)->get();
+        $originalsapi = Sapi::find($pemesanan->id_sapi);
+        return view('pemesanan.edit', compact('pemesanan','sapi','originalsapi'));
     }
 
     public function update(Request $request, $id)

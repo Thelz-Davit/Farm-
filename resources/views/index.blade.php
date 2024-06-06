@@ -49,6 +49,7 @@
               <a href="{{ url('sapi/table') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
+          @if(Auth::user()->name == 'owner')
           <!-- ./col -->
           <div class="col">
             <!-- small box -->
@@ -65,7 +66,6 @@
             </div>
           </div>
           <!-- ./col -->
-          @if(Auth::user()->name == 'admin')
             <div class="col">
               <!-- small box -->
               <div class="small-box bg-success">
@@ -80,7 +80,7 @@
               </div>
             </div>
           @else
-          <div class="col-lg-3 col-6">
+          <div class="col">
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
@@ -88,7 +88,7 @@
                 <p>Pengeluaran</p>
               </div>
               <div class="icon">
-                <i class="ion ion-person-add"></i>
+                <i class="ion ion-clipboard"></i>
               </div>
               <a href="{{ url('pengeluaran/table') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -101,55 +101,10 @@
         <div class="row">
           <!-- Left col -->
           <section class="col-lg-7 connectedSortable">
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Pemesanan</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="chart">
-                  <canvas id="stackedBarChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                </div>
-              </div>
-              <!-- /.card-body -->
-            </div>
-          </section>
-          <!-- /.Left col -->
-          <!-- right col (We are only adding the ID to make the widgets sortable)-->
-          <section class="col-lg-5 connectedSortable">
-            <!-- DONUT CHART -->
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Chart Sapi</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="card-body">
-                <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
             <!-- BAR CHART -->
-            {{-- <div class="card">
+            <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Bar Chart</h3>
+                <h3 class="card-title">Pengeluaran</h3>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -166,7 +121,51 @@
                 </div>
               </div>
               <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+            {{-- <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Pemesanan</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="chart">
+                  <canvas id="stackedBarChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                </div>
+              </div> 
+              <!-- /.card-body --> 
             </div> --}}
+          </section>
+          <!-- /.Left col -->
+          <!-- right col (We are only adding the ID to make the widgets sortable)-->
+          <section class="col-lg-5 connectedSortable">
+            <!-- DONUT CHART -->
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Sapi Tersedia</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+              </div>
+              <!-- /.card-body -->
+            </div>
             <!-- /.card -->
           </section>
           <!-- right col -->
@@ -180,147 +179,75 @@
 @endsection
 
 @section('scripts')
-{{-- <script>
-  var data = {!! json_encode($pemesananGrouped) !!};
-  var labels = data.map(function(item) {
-    return item.tipe;
+<script>
+  var data = {!! json_encode($sumsByJenisPengeluaran) !!};
+  var judul = data.map(function(item) {
+    return item.jenis_pengeluaran;
   });
-  var values = data.map(function(item) {
-    return item.total;
+  var isi = data.map(function(item) {
+    return item.total_cost;
   });
-  console.log(data)
-  console.log(labels)
   $(function() {
       var areaChartData = {
-          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Aug', 'Sept', 'Okt', 'Nov', 'Des'],
+          labels: judul,
           datasets: [{
-                  label: 'Limosin',
-                  backgroundColor: '#C40C0C',
-                  borderColor: '#C40C0C',
+                  label: 'Pengeluaran',
+                  backgroundColor: '#f56954',
+                  borderColor: '#f56954',
                   pointRadius: false,
                   pointColor: '#3b8bba',
                   pointStrokeColor: 'rgba(60,141,188,1)',
                   pointHighlightFill: '#fff',
                   pointHighlightStroke: 'rgba(60,141,188,1)',
-                  data: [1, 5, 6, 2, 1, 7, 9]
-              },
-              {
-                  label: 'Simental',
-                  backgroundColor: '#FF6500',
-                  borderColor: '#FF6500',
-                  pointRadius: false,
-                  pointColor: 'rgba(210, 214, 222, 1)',
-                  pointStrokeColor: '#c1c7d1',
-                  pointHighlightFill: '#fff',
-                  pointHighlightStroke: 'rgba(220,220,220,1)',
-                  data: [1, 5, 6, 2, 1, 7, 9]
-              },
-              {
-                  label: 'Brahman',
-                  backgroundColor: '#FF8A08',
-                  borderColor: '#FF8A08',
-                  pointRadius: false,
-                  pointColor: 'rgba(12, 52, 128, 0.7)',
-                  pointStrokeColor: '#c1c7d1',
-                  pointHighlightFill: '#fff',
-                  pointHighlightStroke: 'rgba(220,220,220,1)',
-                  data: [1, 5, 6, 2, 1, 7, 9]
-              },
-              {
-                  label: 'Bali',
-                  backgroundColor: '#FFC100',
-                  borderColor: '#FFC100',
-                  pointRadius: false,
-                  pointColor: 'rgba(24, 104, 86, 0.8)',
-                  pointStrokeColor: '#c1c7d1',
-                  pointHighlightFill: '#fff',
-                  pointHighlightStroke: 'rgba(220,220,220,1)',
-                  data: [1, 5, 6, 2, 1, 7, 9]
-              },
-              {
-                  label: 'Madura',
-                  backgroundColor: '#BFEA7C',
-                  borderColor: '#BFEA7C',
-                  pointRadius: false,
-                  pointColor: 'rgba(252, 16, 3, 0.4)',
-                  pointStrokeColor: '#c1c7d1',
-                  pointHighlightFill: '#fff',
-                  pointHighlightStroke: 'rgba(220,220,220,1)',
-                  data: [1, 5, 6, 2, 1, 7, 9]
-              },
-              {
-                  label: 'Jawa',
-                  backgroundColor: 'rgba(36, 74, 192, 0.6)',
-                  borderColor: 'rgba(36, 74, 192, 0.6)',
-                  pointRadius: false,
-                  pointColor: 'rgba(36, 74, 192, 0.6)',
-                  pointStrokeColor: '#c1c7d1',
-                  pointHighlightFill: '#fff',
-                  pointHighlightStroke: 'rgba(220,220,220,1)',
-                  data: [1, 5, 6, 2, 1, 7, 9]
-              },
-              {
-                  label: 'Malboro',
-                  backgroundColor: 'rgba(8, 137, 215, 0.7)',
-                  borderColor: 'rgba(8, 137, 215, 0.7)',
-                  pointRadius: false,
-                  pointColor: 'rgba(8, 137, 215, 0.7)',
-                  pointStrokeColor: '#c1c7d1',
-                  pointHighlightFill: '#fff',
-                  pointHighlightStroke: 'rgba(220,220,220,1)',
-                  data: [1, 5, 6, 2, 1, 7, 9]
-              },
+                  data: isi
+              }
           ]
       }
 
-      var areaChartOptions = {
-          maintainAspectRatio: false,
-          responsive: true,
-          legend: {
-              display: false
-          },
-          scales: {
-              xAxes: [{
-                  gridLines: {
-                      display: false,
-                  }
-              }],
-              yAxes: [{
-                  gridLines: {
-                      display: false,
-                  }
-              }]
-          }
-      }
+      // var areaChartOptions = {
+      //     maintainAspectRatio: false,
+      //     responsive: true,
+      //     legend: {
+      //         display: false
+      //     },
+      //     scales: {
+      //         xAxes: [{
+      //             gridLines: {
+      //                 display: false,
+      //             }
+      //         }],
+      //         yAxes: [{
+      //             gridLines: {
+      //                 display: false,
+      //             }
+      //         }]
+      //     }
+      // }
 
-      var stackedBarChartCanvas = $('#stackedBarChart').get(0).getContext('2d')
-      var stackedBarChartData = $.extend(true, {}, areaChartData)
+      // var stackedBarChartCanvas = $('#stackedBarChart').get(0).getContext('2d')
+      // var stackedBarChartData = $.extend(true, {}, areaChartData)
 
-      var stackedBarChartOptions = {
-          responsive: true,
-          maintainAspectRatio: false,
-          scales: {
-              xAxes: [{
-                  stacked: true,
-              }],
-              yAxes: [{
-                  stacked: true
-              }]
-          }
-      }
+      // var stackedBarChartOptions = {
+      //     responsive: true,
+      //     maintainAspectRatio: false,
+      //     scales: {
+      //         xAxes: [{
+      //             stacked: true,
+      //         }],
+      //         yAxes: [{
+      //             stacked: true
+      //         }]
+      //     }
+      // }
 
-      new Chart(stackedBarChartCanvas, {
-          type: 'bar',
-          data: stackedBarChartData,
-          options: stackedBarChartOptions
-      })
+      // new Chart(stackedBarChartCanvas, {
+      //     type: 'bar',
+      //     data: stackedBarChartData,
+      //     options: stackedBarChartOptions
+      // })
 
     var barChartCanvas = $('#barChart').get(0).getContext('2d')
     var barChartData = $.extend(true, {}, areaChartData)
-    // var temp0 = areaChartData.datasets[0]
-    // var temp1 = areaChartData.datasets[1]
-    // barChartData.datasets[0] = temp1
-    // barChartData.datasets[1] = temp0
 
     var barChartOptions = {
       responsive              : true,
@@ -334,69 +261,6 @@
       options: barChartOptions
     })
   });
-</script> --}}
-<script>
-
-var data = {!! json_encode($pemesananGrouped) !!};
-var labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-var datasets = [];
-var types = ['Limosin', 'Simental', 'Brahman', 'Bali', 'Madura', 'Jawa', 'Malboro'];
-
-types.forEach(function(type) {
-    var dataValues = [];
-    labels.forEach(function(label) {
-        var total = 0;
-        data.forEach(function(entry) {
-            if (entry.month === label) {
-                entry.count.forEach(function(count) {
-                    if (count.tipe === type) {
-                        total += count.total;
-                    }
-                });
-            }
-        });
-        dataValues.push(total);
-    });
-    datasets.push({
-        label: type,
-        backgroundColor: getRandomColor(), // You need to define this function to get random colors
-        borderColor: getRandomColor(),
-        data: dataValues
-    });
-});
-// Create Chart.js configuration
-var areaChartData = {
-    labels: labels,
-    datasets: datasets
-};
-
-// Render the chart using Chart.js
-var ctx = document.getElementById('stackedBarChart').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: areaChartData,
-    options: {
-        scales: {
-            xAxes: [{
-                stacked: true
-            }],
-            yAxes: [{
-                stacked: true
-            }]
-        }
-    }
-});
-
-// Function to generate random color
-function getRandomColor() {
-    var letters = '0123456789ABCDEF';
-    var color = '#';
-    for (var i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-}
-
 </script>
 <script>
   var data = {!! json_encode($groupBySapi) !!};

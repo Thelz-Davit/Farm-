@@ -52,6 +52,14 @@ class SapiController extends Controller
     {
         $sapi = Sapi::findOrFail($id);
         $input = $request->all();
+        if ($request->file('foto')) {
+            $image = $request->file('foto');
+            $imageName = time() . '.' . $image->extension();
+            $image->move(public_path('img'), $imageName);
+
+            // Save the image path in the input array
+            $input['foto'] = 'img/' . $imageName;
+        }
         $sapi->update($input);
         return redirect('sapi/table');
     }

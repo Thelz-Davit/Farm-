@@ -33,7 +33,7 @@
                         <option value="Obat">Obat</option>
                         <option value="Utilitas">Utilitas</option>
                         <option value="Perawatan dan Perbaikan">Perawatan dan Perbaikan</option>
-                        <option value="Transportasi dan Pengeluaran">Transportasi dan Pengiriman</option>
+                        <option value="Transportasi">Transportasi dan Pengiriman</option>
                         <option value="Lainnya">Lainnya</option>
                     </select>
                     </div>

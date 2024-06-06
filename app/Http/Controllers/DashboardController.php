@@ -65,8 +65,12 @@ class DashboardController extends Controller
         ->groupBy(DB::raw('MONTHNAME(pemesanan.created_at)'), 'sapi.tipe')
         ->get();
 
+        $sumsByJenisPengeluaran = Pengeluaran::select('jenis_pengeluaran', DB::raw('SUM(cost) as total_cost'))
+        ->groupBy('jenis_pengeluaran')
+        ->get();
+
         // return response()->json($this->formatData($pemesananGrouped));
-        return view('index', compact('count', 'countPemesanan', 'uniqueCustomerCount', 'groupBySapi', 'pemesananGrouped','difference','pemasukanKotor','pengeluaran'));
+        return view('index', compact('count', 'countPemesanan', 'uniqueCustomerCount', 'groupBySapi', 'pemesananGrouped','difference','pemasukanKotor','pengeluaran','sumsByJenisPengeluaran'));
     }
 
     private function formatData($data) {
