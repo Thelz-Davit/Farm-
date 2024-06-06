@@ -16,34 +16,38 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <div class="card card-primary">
+                <div class="card card-warning">
                     <div class="card-header">
-                        <h3 class="card-title">Tambah Pemesanan</h3>
+                        <h3 class="card-title">Edit Pemesanan</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form action="create" method="POST">
-                        {{ csrf_field() }}
+                    <form action="{{ url('pemesanan/edit/'. $pemesanan->id)}}" method="POST">
+                        @csrf
+                        @method('PUT')
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="nama_pelanggan">Nama Pelanggan</label>
                                 <input type="text" class="form-control" name="nama_pelanggan"
-                                    placeholder="Masukan Nama Pelanggan">
+                                    placeholder="Masukan Nama Pelanggan" value="{{ $pemesanan->nama_pelanggan }}">
                             </div>
                             <div class="form-group">
                                 <label for="nama_pelanggan">Nomor Telepon</label>
                                 <input type="number" class="form-control" name="telp"
-                                    placeholder="Masukan Nomor Pelanggan">
+                                    placeholder="Masukan Nomor Pelanggan" value="{{ $pemesanan->telp }}">
                             </div>
                             <div class="form-group">
                                 <label for="nama_pelanggan">Alamat Pengiriman</label>
                                 <input type="textarea" class="form-control" name="alamat_pengiriman"
-                                    placeholder="Masukan Alamat Pengiriman">
+                                    placeholder="Masukan Alamat Pengiriman" value="{{ $pemesanan->alamat_pengiriman }}">
                             </div>
                             <div class="form-group">
                                 <label>Pilihan Sapi</label>
                                 <select class="form-control" name="id_sapi" id=id_sapi>
-                                    <option value="" disabled selected>Pilih Tipe Sapi</option>
+                                    <option value="" disabled>Pilih Tipe Sapi</option>
+                                    <option value="{{ $originalsapi->id }}" data-price="{{ $originalsapi->harga_jual }}" selected>
+                                        {{ $originalsapi->id }} - {{ $originalsapi->tipe }} - Rp.{{ $originalsapi->harga_jual }}
+                                    </option>
                                     @foreach ($sapi as $item)
                                         <option value="{{ $item->id }}" data-price="{{ $item->harga_jual }}">
                                             {{ $item->id }} - {{ $item->tipe }} - Rp.{{ $item->harga_jual }}
@@ -54,12 +58,11 @@
                             <div class="form-group">
                                 <label for="status_pembayaran">Jenis Pembayaran</label>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="status_pembayaran" value="Tunai"
-                                        checked>
+                                    <input class="form-check-input" type="radio" name="status_pembayaran" value="Tunai" {{ $pemesanan->status_pembayaran == 'Tunai' ? 'checked' : '' }}>
                                     <label class="form-check-label">Tunai</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="status_pembayaran" value="Transfer">
+                                    <input class="form-check-input" type="radio" name="status_pembayaran" value="Transfer" {{ $pemesanan->status_pembayaran == 'Transfer' ? 'checked' : '' }}>
                                     <label class="form-check-label">Transfer</label>
                                 </div>
                             </div>
@@ -71,8 +74,8 @@
                                     </div>
                                     {{-- <input type="text" class="form-control" name="pembayaran" id="pembayaran"
                                         type="number"> --}}
-                                    <input type="text" class="form-control" name="formatted_pembayaran" id="pembayaran">
-                                    <input type="hidden" name="pembayaran" id="raw_pembayaran">
+                                    <input type="text" class="form-control" name="formatted_pembayaran" id="pembayaran" value="{{ $pemesanan->pembayaran }}">
+                                    <input type="hidden" name="pembayaran" id="raw_pembayaran" value="{{ $pemesanan->pembayaran }}">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -84,7 +87,6 @@
                                     <input type="text" class="form-control" id="sisa_pembayaran" readonly>
                                 </div>
                             </div>
-                            {{-- masih rusak harusnya fetch admin tp for now 1 dulu aja value id adminnya --}}
                             <div class="form-group">
                                 <input type="hidden" class="form-control" name="admin" value="{{ Auth::user()->name }}">
                             </div>

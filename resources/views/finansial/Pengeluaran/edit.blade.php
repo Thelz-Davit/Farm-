@@ -6,13 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Table</h1>
-                </div><!-- /.col -->
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Dashboard v1</li>
-                    </ol>
+                    <h1 class="m-0">Edit Data</h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -24,58 +18,35 @@
         <div class="container-fluid">
             <div class="card card-warning">
                 <div class="card-header">
-                <h3 class="card-title">Edit Sapi</h3>
+                <h3 class="card-title">Edit Pengeluaran</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form action="{{ url('sapi/edit/'. $sapi->id)}}" method="POST">
+                <form action="{{ url('pengeluaran/edit/'. $pengeluaran->id)}}" method="POST">
                     @csrf
                     @method('PUT')
                 <div class="card-body">
                     <div class="form-group">
-                    <label>jenis pengeluaran\</label>
-                    <select class="form-control" name="tipe">
-                        <option value="" disabled selected>Pilih Tipe Sapi</option>
-                        <option value="Limosin" {{ $sapi->tipe == 'Limosin' ? 'selected' : '' }}>Limosin</option>
-                        <option value="Simental" {{ $sapi->tipe == 'Simental' ? 'selected' : '' }}>Simental</option>
-                        <option value="Brahman" {{ $sapi->tipe == 'Brahman' ? 'selected' : '' }}>Brahman</option>
-                        <option value="Bali"{{ $sapi->tipe == 'Bali' ? 'selected' : '' }}>Bali</option>
-                        <option value="Madura"{{ $sapi->tipe == 'Madura' ? 'selected' : '' }}>Madura</option>
-                        <option value="Jawa"{{ $sapi->tipe == 'Jawa' ? 'selected' : '' }}>Jawa</option>
-                        <option value="Malboro"{{ $sapi->tipe == 'Malboro' ? 'selected' : '' }}>Malboro</option>
-                    </select>
+                        <label>Jenis Pengeluaran</label>
+                        <select class="form-control" name="jenis_pengeluaran">
+                            <option value="" disabled selected>Pilih Jenis Pengeluaran</option>
+                            <option value="Pakan" {{ $pengeluaran->jenis_pengeluaran == 'Pakan' ? 'selected' : '' }}>Pakan</option>
+                            <option value="Obat" {{ $pengeluaran->jenis_pengeluaran == 'Obat' ? 'selected' : '' }}>Obat</option>
+                            <option value="Utilitas" {{ $pengeluaran->jenis_pengeluaran == 'Utilitas' ? 'selected' : '' }}>Utilitas</option>
+                            <option value="Perawatan dan Perbaikan" {{ $pengeluaran->jenis_pengeluaran == 'Perawatan dan Perbaikan' ? 'selected' : '' }}>Perawatan dan Perbaikan</option>
+                            <option value="Transportasi" {{ $pengeluaran->jenis_pengeluaran == 'Transportasi' ? 'selected' : '' }}>Transportasi dan Pengiriman</option>
+                            <option value="Lainnya" {{ $pengeluaran->jenis_pengeluaran == 'Lainnya' ? 'selected' : '' }}>Lainnya</option>
+                        </select>
                     </div>
                     <div class="form-group">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="status_kesehatan" value="Sehat" {{ $sapi->status_kesehatan == 'Sehat' ? 'checked' : '' }}>
-                        <label class="form-check-label">Sehat</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="status_kesehatan" value="Tidak Sehat" {{ $sapi->status_kesehatan == 'Tidak Sehat' ? 'checked' : '' }}>
-                        <label class="form-check-label">Tidak Sehat</label>
-                    </div>
-                </div>
-                    <div class="form-group">
-                    <label for="tipeSapi">Harga Jual</label>
-                    <input type="text" class="form-control" name="harga_jual" placeholder="Masukan Tipe Sapi" value="{{ $sapi->harga_jual}}">
-                    </div>
-                    <div class="form-group">
-                    <label for="tipeSapi">Harga Beli</label>
-                    <input type="text" class="form-control" name="harga_beli" placeholder="Masukan Tipe Sapi" value="{{ $sapi->harga_beli}}">
-                    </div>
-                    {{-- <div class="form-group">
-                    <label for="exampleInputFile">Foto</label>
-                    <div class="input-group">
-                        <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="exampleInputFile">
-                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                        <label for="keterangan">Keterangan</label>
+                        <input type="text" class="form-control" name="keterangan" placeholder="Masukan Keterangan" value="{{ $pengeluaran->keterangan}}">
                         </div>
-                        <div class="input-group-append">
-                        <span class="input-group-text">Upload</span>
+                        <div class="form-group">
+                        <label for="cost">Cost</label>
+                        <input type="number" class="form-control" name="cost" placeholder="Masukan Cost" value="{{ $pengeluaran->cost}}">
                         </div>
                     </div>
-                    </div> --}}
-                </div>
                 <!-- /.card-body -->
   
                 <div class="card-footer">

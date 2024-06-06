@@ -19,7 +19,7 @@
         </div>
 >>>>>>> 2a3d2cc9fa8f9f3da991f1d619ea35d792f86311
             <div class="info">
-                <a href="#" class="d-block">Admin</a>
+                <a href="#" class="d-block">{{ Auth::user()->name }}</a>
             </div>
         </div>
 

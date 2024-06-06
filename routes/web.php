@@ -57,3 +57,6 @@ Route::post('pemesanan/import', [PemesananController::class, 'import']);
 
 Route::get('pengeluaran/create', [PengeluaranController::class, 'create']);
 Route::post('pengeluaran/create', [PengeluaranController::class, 'store']);
+Route::get('/pengeluaran/edit/{id}', [PengeluaranController::class, 'edit']);
+Route::put('/pengeluaran/edit/{id}', [PengeluaranController::class, 'update']);
+Route::delete('/pengeluaran/delete/{id}', [PengeluaranController::class, 'destroy']);

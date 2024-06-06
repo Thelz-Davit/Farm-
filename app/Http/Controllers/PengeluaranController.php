@@ -25,4 +25,24 @@ class PengeluaranController extends Controller
         Pengeluaran::create($input);
         return redirect('pengeluaran/table');
     }
+
+    public function edit($id)
+    {
+        $pengeluaran = Pengeluaran::findOrFail($id);
+        return view('finansial.pengeluaran.edit', compact('pengeluaran'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $pesan = Pengeluaran::findOrFail($id);
+        $input = $request->all();
+        $pesan->update($input);
+        return redirect('pengeluaran/table');
+    }
+    public function destroy($id)
+    {
+        $pesan = Pengeluaran::findOrFail($id);
+        $pesan->delete();
+        return redirect('pengeluaran/table');
+    }
 }
